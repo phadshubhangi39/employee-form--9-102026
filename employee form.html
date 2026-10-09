@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Employee Form</title>
+  <style>
+    * {
+      box-sizing: border-box;   /* all fields get exactly the same width */
+    }
+    body {
+      background: #eef2ff;
+      font-family: Arial;
+      margin: 0;
+    }
+    .box {
+      background: white;
+      width: 400px;
+      margin: 40px auto;        /* centers the box */
+      padding: 25px;
+      border-radius: 10px;
+    }
+    h2 {
+      text-align: center;
+    }
+    .row {
+      display: flex;            /* label and field side by side */
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    .row label {
+      width: 100px;
+    }
+    .row input, .row select {
+      width: 220px;             /* same size for all fields */
+      padding: 8px;
+    }
+    .btn {
+      text-align: center;
+      margin-top: 20px;
+    }
+    button {
+      background: #4f46e5;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+    }
+    table {
+      width: 100%;
+      margin-top: 25px;
+      text-align: center;
+      display: none;            /* hidden until an employee is added */
+    }
+    th {
+      background: #4f46e5;
+      color: white;
+      padding: 8px;
+    }
+    td {
+      padding: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="box">
+    <h2>Employee Form</h2>
+
+    <div class="row">
+      <label>Id</label>
+      <input type="number" id="id">
+    </div>
+
+    <div class="row">
+      <label>Name</label>
+      <input type="text" id="name">
+    </div>
+
+    <div class="row">
+      <label>Role</label>
+      <select id="role">
+        <option value=""></option>
+        <option>Developer</option>
+        <option>Tester</option>
+        <option>HR</option>
+        <option>Manager</option>
+      </select>
+    </div>
+
+    <div class="row">
+      <label>Salary</label>
+      <input type="number" id="salary">
+    </div>
+
+    <div class="btn">
+      <button onclick="addEmployee()">Add Employee</button>
+    </div>
+
+    <table id="table">
+      <tr><th>Id</th><th>Name</th><th>Role</th><th>Salary</th></tr>
+      <tbody id="tableBody"></tbody>
+    </table>
+  </div>
+
+  <script>
+    function addEmployee() {
+      var id = document.getElementById("id").value;
+      var name = document.getElementById("name").value;
+      var role = document.getElementById("role").value;
+      var salary = document.getElementById("salary").value;
+
+      if (id == "" || name == "" || role == "" || salary == "") {
+        alert("Please fill all fields");
+        return;
+      }
+
+      var row = document.createElement("tr");
+      row.innerHTML = "<td>" + id + "</td><td>" + name + "</td><td>" + role + "</td><td>" + salary + "</td>";
+      document.getElementById("tableBody").appendChild(row);
+
+      document.getElementById("table").style.display = "table";
+
+      document.getElementById("id").value = "";
+      document.getElementById("name").value = "";
+      document.getElementById("role").value = "";
+      document.getElementById("salary").value = "";
+    }
+  </script>
+
+</body>
+</html>
